@@ -1,16 +1,16 @@
 -- Create database
-CREATE DATABASE IF NOT EXISTS insecure_app;
-USE insecure_app;
+CREATE DATABASE IF NOT EXISTS vulnlab;
+USE vulnlab;
 
 -- USERS TABLE
 -- Plaintext passwords
 -- Integer IDs
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100),
-    email VARCHAR(150),
-    password VARCHAR(255),
-    bio TEXT
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255),
+  password VARCHAR(255),
+  role VARCHAR(50),
+  bio TEXT
 );
 
 -- POSTS TABLE
@@ -26,9 +26,8 @@ CREATE TABLE posts (
 -- UPLOADS TABLE
 -- No validation, just metadata
 CREATE TABLE uploads (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    filename VARCHAR(255),
-    filepath VARCHAR(500),
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  filename VARCHAR(255),
+  original_name VARCHAR(255),
+  uploaded_by INT
 );

@@ -12,7 +12,12 @@ module.exports = (req, res, next) => {
   }
 
   // Expecting: Authorization: Bearer <token>
-  const token = authHeader.split(' ')[1];
+  const parts = authHeader.split(' ');
+  const token = parts.length === 2 ? parts[1] : null;
+
+  if (!token) {
+    return res.status(401).json({ message: 'Malformed token' });
+  }
 
   try {
     // ❌ Weak verification (no algorithm enforcement)

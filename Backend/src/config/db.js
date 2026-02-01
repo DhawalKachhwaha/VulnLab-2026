@@ -1,23 +1,19 @@
-// MySQL database configuration for VulnLab-2026
-// Intentionally simple and insecure
-
 const mysql = require('mysql2');
 
-// Create MySQL connection using .env values
-const db = mysql.createConnection({
+const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  database: process.env.DB_NAME
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
-// Connect to database
-db.connect((err) => {
+connection.connect((err) => {
   if (err) {
     console.error('Database connection failed:', err);
-    return;
+    process.exit(1);
   }
   console.log('Connected to MySQL database');
 });
 
-module.exports = db;
+module.exports = connection;

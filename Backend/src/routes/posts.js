@@ -30,8 +30,8 @@ router.post('/posts', authMiddleware, (req, res, next) => {
 
   // ❌ No sanitization
   const query = `
-    INSERT INTO posts (user_id, content)
-    VALUES ('${userId}', '${content}')
+    INSERT INTO posts (user_id, title, content)
+    VALUES ('${userId}', '${title}', '${content}')
   `;
 
   db.query(query, (err, result) => {

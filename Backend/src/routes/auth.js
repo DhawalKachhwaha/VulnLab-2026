@@ -18,8 +18,8 @@ router.post('/register', (req, res, next) => {
 
   // ❌ No validation, no hashing
   const query = `
-    INSERT INTO users (email, password, role)
-    VALUES ('${email}', '${password}', 'user')
+    INSERT INTO users (email, password, role, bio)
+    VALUES ('${email}', '${password}', 'user', '')
   `;
 
   db.query(query, (err, result) => {
